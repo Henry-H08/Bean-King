@@ -1,12 +1,7 @@
-kaplay();
-
-loadSprite("bean", "/sprites/bean.png");
-
-
 const SPEED = 320;
 
 const player = add([
-    sprite("bean"),
+    sprite("apple"),
     pos(center()),
 ]);
 
