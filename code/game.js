@@ -1,17 +1,43 @@
-scene('game', () => {
-  const apple = add([
-    sprite('apple'),
-    pos(SCALE*3, SCALE*3),
-    scale((SCALE/64) * 3), // SCALE divided by sprite width, multiplied by the size change
-    rotate(0),
-    anchor('center'),
+kaplay();
 
-  ]);
+loadSprite("bean", "/sprites/bean.png");
 
-  onUpdate(() => {
-    apple.angle += dt()*150;
-    apple.pos = mousePos();
-  });
+
+const SPEED = 320;
+
+const player = add([
+    sprite("bean"),
+    pos(center()),
+]);
+
+onKeyDown("left", () => {
+    player.move(-SPEED, 0);
 });
 
-go('game');
+onKeyDown("right", () => {
+    player.move(SPEED, 0);
+});
+
+
+
+
+function lines() {
+        add([
+            rect(12, 48),
+            area(),
+            pos(center()),
+            anchor("center"),
+            color(127, 127, 255),
+            outline(4),
+            move(DOWN, 320),
+            offscreen({ destroy: true }),
+            "line",
+        ]);
+    }
+
+onUpdate(() => {
+    wait(5, () => {
+    lines()
+})
+})
+
