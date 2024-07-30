@@ -1,20 +1,5 @@
 const SPEED = 320;
 
-const player = add([
-    sprite("apple"),
-    pos(center()),
-]);
-
-onKeyDown("left", () => {
-    player.move(-SPEED, 0);
-});
-
-onKeyDown("right", () => {
-    player.move(SPEED, 0);
-});
-
-
-
 
 function lines() {
         add([
@@ -35,4 +20,22 @@ onUpdate(() => {
     lines()
 })
 })
+
+
+const player = add([
+    sprite("apple"),
+    pos(center()),
+]);
+
+onKeyDown("left", () => {
+    player.move(-SPEED, 0);
+});
+
+onKeyDown("right", () => {
+    player.move(SPEED, 0);
+});
+
+
+
+
 
