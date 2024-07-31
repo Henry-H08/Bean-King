@@ -25,7 +25,7 @@ onKeyDown("down", () => {
     debug.log(zoom);
 });
 
-
+camScale(1.1);
 
 
 
