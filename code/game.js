@@ -35,12 +35,12 @@ onKeyDown("down", () => {
 
 loop(1, () => {
     const road = add([
-    sprite("apple"),
+    sprite("road"),
     pos(width()/2, (height()/15)-70),
     z(-1),
     move(DOWN, 300),
     anchor("center"),
-    scale(100),
+    //scale(100),
     offscreen({destroy: true}),
 
 ]);
