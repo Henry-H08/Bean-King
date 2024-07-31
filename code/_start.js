@@ -13,7 +13,7 @@ kaboom({
 
 debug.inspect = false;
 
-const SCALE = width()/16;
+
 
 
 
