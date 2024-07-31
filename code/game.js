@@ -36,6 +36,7 @@ loop(1, () => {
         pos(width()/2, height()/9999999),
         move(DOWN, 300),
         offscreen({destroy: true}),
+        anchor("center"),
         "road",
     ])
 })
