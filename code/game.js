@@ -1,5 +1,5 @@
 const SPEED = 320;
-
+var zoom = 300;
 
 const player = add([
     sprite("apple"),
@@ -17,13 +17,11 @@ onKeyDown("right", () => {
 
 onKeyDown("up", () => {
     zoom = zoom + 30;
-    loopspeed = loopspeed - 0.5;
     debug.log(zoom);
 });
 
 onKeyDown("down", () => {
     zoom = zoom - 30;
-    loopspeed = loopspeed + 0.5;
     debug.log(zoom);
 });
 
