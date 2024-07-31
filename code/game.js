@@ -39,7 +39,6 @@ loop(1, () => {
     z(-1),
     move(DOWN, 300),
     anchor("bottom"),
-    //scale(100),
     offscreen({destroy: true}),
 
 ]);
