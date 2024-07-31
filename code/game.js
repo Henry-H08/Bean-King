@@ -1,6 +1,6 @@
 const SPEED = 320;
 
-camScale(1.1);
+camScale(6);
 
 const player = add([
     sprite("apple"),
