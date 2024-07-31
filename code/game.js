@@ -1,8 +1,6 @@
 const SPEED = 320;
 
-var zoom = 0;
 
-var loopspeed = 1;
 
 const player = add([
     sprite("apple"),
@@ -35,21 +33,18 @@ onKeyDown("down", () => {
 
 
 
-loop(loopspeed, () => {
-    add([
-            rect(12, 48),
-            area(),
-            pos(width()/2, (height()/15)-65),
-            anchor("top"),
-            color(127, 127, 255),
-            outline(4),
-            move(DOWN, 300),
-            offscreen({ destroy: true }),
-            z(1),
-            "line",
-        ]);
-})
+loop(1, () => {
+    const road = add([
+    sprite("apple"),
+    pos(width()/2, (height()/15)-70),
+    z(-1),
+    move(DOWN, 300),
+    anchor("center"),
+    scale(100),
+    offscreen({destroy: true}),
 
+]);
+})
 
 
 
