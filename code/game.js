@@ -39,7 +39,7 @@ loop(1, () => {
     pos(width()/2, (height()/15)-70),
     z(-1),
     move(DOWN, 300),
-    anchor("center"),
+    anchor("bottom"),
     //scale(100),
     offscreen({destroy: true}),
 
