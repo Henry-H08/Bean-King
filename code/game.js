@@ -33,7 +33,7 @@ onKeyDown("down", () => {
 loop(1, () => {
     const road = add([
     sprite("road"),
-    pos(width()/2, (height()/15)-70),
+    pos(width()/2),
     z(-1),
     move(DOWN, 300),
     anchor("bottom"),
