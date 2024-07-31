@@ -20,3 +20,4 @@ const SCALE = width()/16;
 loadRoot('sprites/');
 
 loadSprite('apple', 'apple.png');
+loadSprite('road', 'road.png');
