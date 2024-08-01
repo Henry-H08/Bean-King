@@ -36,17 +36,22 @@ for (let i = 0; i < 6; i++) {
     debug.log(pause);
     wait(pause, () => {
     const road = add([
-        sprite("apple"),
+        sprite("road"),
         pos(width()/2, pause),
-        move(DOWN, 300),
         
+        'road',
     ]);
 
 })
     
 }
 
-if (road.pos.y >= 600) {
-    road.pos.y = 20;
+onUpdate(() => {
+    get('road').forEach((r) => {
+        r.pos.y += 3;
 
-};
+        if (r.pos.y > 1000) {
+            r.pos.y = 0;
+        }
+    })
+})
