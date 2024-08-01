@@ -30,15 +30,23 @@ camScale(1.1);
 
 
 
-loop(1.05, () => {
-    add([
-        sprite("road"),
-        pos(width()/2, height()/9999999),
+var pause = 1;
+for (let i = 0; i < 6; i++) {
+    pause = pause + 1;
+    debug.log(pause);
+    wait(pause, () => {
+    const road = add([
+        sprite("apple"),
+        pos(width()/2, pause),
         move(DOWN, 300),
-        offscreen({destroy: true}),
-        anchor("center"),
-        "road",
-    ])
+        
+    ]);
+
 })
+    
+}
 
+if (road.pos.y >= 600) {
+    road.pos.y = 20;
 
+};
