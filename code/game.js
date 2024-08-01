@@ -38,7 +38,7 @@ for (let i = 0; i < 6; i++) {
     const road = add([
         sprite("road"),
         pos(width()/2, pause),
-        
+        anchor("center"),
         'road',
     ]);
 
