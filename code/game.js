@@ -30,7 +30,7 @@ camScale(1.1);
 
 
 
-loop(1.1, () => {
+loop(1.05, () => {
     add([
         sprite("road"),
         pos(width()/2, height()/9999999),
