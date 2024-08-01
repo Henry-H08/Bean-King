@@ -32,7 +32,7 @@ camScale(1.1);
 
 var pause = 1;
 for (let i = 0; i < 6; i++) {
-    pause = pause + 1;
+    pause = pause + 0.6;
     debug.log(pause);
     wait(pause, () => {
     const road = add([
