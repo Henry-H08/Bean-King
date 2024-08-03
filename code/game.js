@@ -1,6 +1,6 @@
 const SPEED = 320;
 var zoom = 300;
-
+camScale(1.5);
 const player = add([
     sprite("apple"),
     pos(center()),
