@@ -1,157 +1,109 @@
+// Load assets
+
+const SPEED = 320;
+const ENEMY_SPEED = 160;
 
 
-setGravity(3200);
+// Add player game object
 
-
-
-// define some constants
-const JUMP_FORCE = 1320;
-const MOVE_SPEED = 480;
-const FALL_DEATH = 2400;
-
-const LEVELS = [
-    [        
-
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=                   =",
-        "=     ==     ==     =",
-        "=  ==           ==  =",
-        "=                   =",
-        "=====================",
-    ],
+const player = add([
+    sprite("bean"),
+    pos(80, 80),
+    area(),
+    anchor("center"),
+    z(12),
+    "player",
     
-];
+]);
 
-// define what each symbol means in the level graph
-const levelConf = {
-    tileWidth: 64,
-    tileHeight: 64,
-    tiles: {
-        "=": () => [
-            sprite("grass"),
-            area(),
-            body({ isStatic: true }),
-            anchor("bot"),
-            offscreen({ hide: true }),
-            "platform",
-        ],
-        
-        "^": () => [
-            sprite("spike"),
-            area(),
-            body({ isStatic: true }),
-            anchor("bot"),
-            offscreen({ hide: true }),
-            "danger",
-        ],
-        
-    },
-};
-
-scene("game", ({ levelId, coins } = { levelId: 0, coins: 0 }) => {
-    // add level to scene
-    const level = addLevel(LEVELS[levelId ?? 0], levelConf);
-
-    // define player object
-    const player = add([
+for (let i = 1; i < 2; i++) {
+    player.add([
         sprite("bean"),
-        pos(center()),
+        rotate(0),
+        anchor(vec2(i).scale(0)),
+        scale(4),
+        z(1),
         area(),
-        scale(1),
-        // makes it fall to gravity and jumpable
-        body(),
-        // the custom component we defined above
-        
-        anchor("top"),
+        opacity(0),
+        "detector",
+        {
+            speed: i * 8,
+        },
     ]);
+}
 
-    // action() runs every frame
-    player.onUpdate(() => {
-        // center camera to player
-        camPos(width()/2, player.pos.y);
-        // check fall death
-        if (player.pos.y >= FALL_DEATH) {
-            go("lose");
-        }
-        if (player.pos.y <= 0) {
-            go("lose");
-        }
-    });
+const enemy = add([
+    sprite("apple"),
+    pos(width() - 80, height() - 80),
+    anchor("center"),
+    area(),
+    // This enemy cycle between 3 states, and start from "idle" state
+    state("move", ["idle", "attack", "move"]),
+    z(5),
+    health(3),
+]);
 
-    
+// Run the callback once every time we enter "idle" state.
+// Here we stay "idle" for 0.5 second, then enter "attack" state.
+enemy.onStateEnter("idle", async () => {
+    await wait(0.5);
+    enemy.enterState("attack");
+});
 
-    player.onPhysicsResolve(() => {
-        // Set the viewport center to player.pos
-        camPos(width()/2, player.pos.y);
-    });
+// When we enter "attack" state, we fire a bullet, and enter "move" state after 1 sec
+enemy.onStateEnter("attack", async () => {
+    // Don't do anything if player doesn't exist anymore
+    if (player.exists()) {
+        const dir = player.pos.sub(enemy.pos).unit();
 
-    // if player onCollide with any obj with "danger" tag, lose
-    player.onCollide("danger", () => {
-        go("lose");
-        play("hit");
-    });
-
- 
-
-    function jump() {
-        // these 2 functions are provided by body() component
-        if (player.isGrounded()) {
-            player.jump(JUMP_FORCE);
-        }
     }
 
-
-    onKeyPress("up", jump);
-
-    onKeyDown("left", () => {
-        player.move(-MOVE_SPEED, 0);
-    });
-
-    onKeyDown("right", () => {
-        player.move(MOVE_SPEED, 0);
-    });
-
-
-    
-    onKeyPress("f", () => {
-        setFullscreen(!isFullscreen());
-    });
+    await wait(1);
+    enemy.enterState("move");
 });
 
-scene("lose", () => {
-    add([
-        text("You Lose"),
-    ]);
-    onKeyPress(() => go("game"));
+
+
+// Like .onUpdate() which runs every frame, but only runs when the current state is "move"
+// Here we move towards the player every frame if the current state is "move"
+enemy.onStateUpdate("move", () => {
+    if (!player.exists()) return;
+    const dir = player.pos.sub(enemy.pos).unit();
+    enemy.move(dir.scale(ENEMY_SPEED));
 });
 
-scene("win", () => {
-    add([
-        text("You Win"),
-    ]);
-    onKeyPress(() => go("game"));
+// Taking a bullet makes us disappear
+player.onCollide("bullet", (bullet) => {
+    destroy(bullet);
+    destroy(player);
+    addKaboom(bullet.pos);
 });
 
-go("game");
+// Register input handlers & movement
+onKeyDown("left", () => {
+    player.move(-SPEED, 0);
+});
+
+onKeyDown("right", () => {
+    player.move(SPEED, 0);
+});
+
+onKeyDown("up", () => {
+    player.move(0, -SPEED);
+});
+
+onKeyDown("down", () => {
+    player.move(0, SPEED);
+});
+
+var time = 0;
+
+
+
+enemy.onCollide("detector", () => {
+    if ('time' == 0) {
+        debug.log(time);
+    }
+
+});
 
