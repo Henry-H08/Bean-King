@@ -32,9 +32,13 @@ for (let i = 1; i < 2; i++) {
     ]);
 }
 
-const enemy = add([
+
+
+while (i < 10) {
+    wait(3);
+  const enemy = add([
     sprite("apple"),
-    pos(width() - 80, height() - 80),
+    pos((rand(0, width()), rand(0, height()))),
     anchor("center"),
     area(),
     // This enemy cycle between 3 states, and start from "idle" state
@@ -43,6 +47,20 @@ const enemy = add([
     health(3),
     "enemy",
 ]);
+  i++;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Run the callback once every time we enter "idle" state.
 // Here we stay "idle" for 0.5 second, then enter "attack" state.
