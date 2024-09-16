@@ -116,3 +116,11 @@ enemy.on("death", () => {
     destroy(enemy)
 })
 
+player.onCollide("enemy", () => {
+    player.hurt(1);
+});
+
+player.on("death", () => {
+    destroy(player)
+})
+
