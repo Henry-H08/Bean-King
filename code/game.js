@@ -122,4 +122,8 @@ player.onCollide("enemy", () => {
     debug.log(phealth);
 });
 
+if (phealth =< 0) {
+    destroy(player);
+};
+
 
