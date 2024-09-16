@@ -1,4 +1,3 @@
-// Load assets
 
 const SPEED = 320;
 const ENEMY_SPEED = 160;
@@ -12,6 +11,7 @@ const player = add([
     area(),
     anchor("center"),
     z(12),
+    health(1),
     "player",
     
 ]);
@@ -33,7 +33,7 @@ for (let i = 1; i < 2; i++) {
 }
 
 const enemy = add([
-    sprite("apple"),
+    sprite("ghosty"),
     pos(width() - 80, height() - 80),
     anchor("center"),
     area(),
@@ -41,6 +41,7 @@ const enemy = add([
     state("move", ["idle", "attack", "move"]),
     z(5),
     health(3),
+    "enemy",
 ]);
 
 // Run the callback once every time we enter "idle" state.
@@ -72,12 +73,7 @@ enemy.onStateUpdate("move", () => {
     enemy.move(dir.scale(ENEMY_SPEED));
 });
 
-// Taking a bullet makes us disappear
-player.onCollide("bullet", (bullet) => {
-    destroy(bullet);
-    destroy(player);
-    addKaboom(bullet.pos);
-});
+
 
 // Register input handlers & movement
 onKeyDown("left", () => {
@@ -96,14 +92,24 @@ onKeyDown("down", () => {
     player.move(0, SPEED);
 });
 
-var time = 0;
+var attime = 0;
+var httime = 0;
 
 
 
-enemy.onCollide("detector", () => {
-    if ('time' == 0) {
-        debug.log(time);
+enemy.onCollideUpdate("detector", () => {
+    if (attime == 0) {
+        debug.log(attime);
+        attime = 2;
+        enemy.hurt(1)
+        wait(1, () => {
+            attime = 0;
+        })
     }
 
 });
+
+enemy.on("death", () => {
+    destroy(enemy)
+})
 
