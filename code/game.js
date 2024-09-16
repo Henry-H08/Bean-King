@@ -1,6 +1,7 @@
 
 const SPEED = 320;
 const ENEMY_SPEED = 160;
+var phealth = 3;
 
 
 // Add player game object
@@ -117,10 +118,8 @@ enemy.on("death", () => {
 })
 
 player.onCollide("enemy", () => {
-    debug.log(attime);
+    phealth = phealth - 1;
+    debug.log(phealth);
 });
 
-player.on("death", () => {
-    destroy(player)
-})
 
