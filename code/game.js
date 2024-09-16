@@ -33,7 +33,7 @@ for (let i = 1; i < 2; i++) {
 }
 
 const enemy = add([
-    sprite("ghosty"),
+    sprite("apple"),
     pos(width() - 80, height() - 80),
     anchor("center"),
     area(),
