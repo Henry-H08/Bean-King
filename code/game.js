@@ -32,7 +32,7 @@ for (let i = 1; i < 2; i++) {
     ]);
 }
 
-
+var i = 100;
 
 while (i < 10) {
     wait(3);
