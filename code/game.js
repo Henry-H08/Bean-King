@@ -40,7 +40,7 @@ const enemy = add([
     // This enemy cycle between 3 states, and start from "idle" state
     state("move", ["idle", "attack", "move"]),
     z(5),
-    health(3),
+    health(33),
     "enemy",
 ]);
 
@@ -104,7 +104,7 @@ enemy.onCollideUpdate("detector", () => {
     if (attime == 0) {
         debug.log(attime);
         attime = 2;
-        enemy.hurt(1)
+        enemy.hurt(1);
         wait(1, () => {
             attime = 0;
         })
@@ -117,7 +117,7 @@ enemy.on("death", () => {
 })
 
 player.onCollide("enemy", () => {
-    player.hurt(1);
+    debug.log(attime);
 });
 
 player.on("death", () => {
