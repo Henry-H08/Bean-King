@@ -32,11 +32,7 @@ for (let i = 1; i < 2; i++) {
     ]);
 }
 
-var i = 100;
-
-while (i < 10) {
-    wait(3);
-  const enemy = add([
+const enemy = add([
     sprite("apple"),
     pos((rand(0, width()), rand(0, height()))),
     anchor("center"),
@@ -47,17 +43,6 @@ while (i < 10) {
     health(3),
     "enemy",
 ]);
-  i++;
-}
-
-
-
-
-
-
-
-
-
 
 
 
