@@ -142,8 +142,12 @@ player.onCollideUpdate("enemy", () => {
             httime = 0;
         })
     }
+    player.on("death", () => {
+    destroy(player)
+})
 
 });
+
 
 
 
