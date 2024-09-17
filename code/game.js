@@ -120,10 +120,11 @@ enemy.on("death", () => {
 player.onCollide("enemy", () => {
     phealth = phealth - 1;
     debug.log(phealth);
-});
-
-if (phealth < 0) {
+    if (phealth = 0) {
     destroy(player);
 };
+
+});
+
 
 
