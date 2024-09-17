@@ -40,8 +40,6 @@ onKeyDown("space", () => {
     pos(rand(0, width()), rand(0, height())),
     anchor("center"),
     area(),
-    // This enemy cycle between 3 states, and start from "idle" state
-    state("move", ["move"]),
     z(5),
     health(33),
     "enemy",
@@ -51,12 +49,12 @@ onKeyDown("space", () => {
 
 
 get('enemy').forEach((enemy) => {
-    enemy.onState("move", () => {
-        if (!player.exists()) return;
+    onUpdate(() => {
+    if (!player.exists()) return;
         const dir = player.pos.sub(enemy.pos).unit();
         enemy.move(dir.scale(ENEMY_SPEED));
-        
-    });
+    }
+    
     enemy.on("death", () => {
     destroy(enemy)
 })
