@@ -12,6 +12,7 @@ const player = add([
     anchor("center"),
     z(12),
     health(phealth),
+    body(),
     "player",
     
 ]);
@@ -41,6 +42,7 @@ const enemy = add([
     state("move", ["move"]),
     z(5),
     health(33),
+    body(),
     "enemy",
 ]);
 
