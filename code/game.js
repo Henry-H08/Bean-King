@@ -141,17 +141,15 @@ player.onCollide("enemy", () => {
 });
 
 
+onUpdate(() => {
+        healthscore.text = phealth;
+    });
+
 var healthscore = add([
-        text(phealth),
+        text(),
         pos(12, 32),
         fixed(),
         { health: 0 },
         color(BLACK),
     ]);
 
-  healthscore.onUpdate(() => {
-        healthscore = phealth;
-    });
-
-
-  
