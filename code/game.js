@@ -130,15 +130,22 @@ enemy.on("death", () => {
     destroy(enemy)
 })
 
-player.onCollide("enemy", () => {
-    phealth = phealth - 1;
-    player.hurt(1);
-    if (phealth < 1) {
-    debug.log("he dead");
-    destroy(player);
-};
+
+
+player.onCollideUpdate("enemy", () => {
+    if (httime == 0) {
+        debug.log(httime);
+        attime = 2;
+        player.hurt(1);
+        phealth = phealth - 1;
+        wait(1, () => {
+            httime = 0;
+        })
+    }
 
 });
+
+
 
 
 onUpdate(() => {
