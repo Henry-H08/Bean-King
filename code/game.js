@@ -122,7 +122,6 @@ player.onCollideUpdate("enemy", () => {
     player.on("death", () => {
     destroy(player)
     addKaboom(enemy.pos);
-    enemy.rotate(99999);
 })
 
 });
