@@ -160,5 +160,14 @@ const healthbar = add([
         },
     ]);
 
+ healthbar.onUpdate(() => {
+        if (healthbar.flash) {
+            healthbar.color = rgb(255, 255, 255);
+            healthbar.flash = false;
+        }
+        else {
+            healthbar.color = rgb(127, 255, 127);
+        }
+    });
 
 
