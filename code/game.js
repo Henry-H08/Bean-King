@@ -11,7 +11,7 @@ const player = add([
     area(),
     anchor("center"),
     z(12),
-    health(1),
+    health(phealth),
     "player",
     
 ]);
@@ -138,6 +138,27 @@ player.onCollide("enemy", () => {
 };
 
 });
+
+
+
+
+player.onHurt(() => {
+        healthbar.set(player.hp());
+    });
+
+const healthbar = add([
+        rect(width(), 24),
+        pos(0, 0),
+        color(107, 201, 108),
+        fixed(),
+        {
+            max: phealth,
+            set(hp) {
+                this.width = width() * hp / this.max;
+                this.flash = true;
+            },
+        },
+    ]);
 
 
 
