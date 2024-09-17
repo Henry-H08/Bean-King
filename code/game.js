@@ -38,7 +38,7 @@ const enemy = add([
     anchor("center"),
     area(),
     // This enemy cycle between 3 states, and start from "idle" state
-    state("move", ["idle", "attack", "move"]),
+    state("move", ["move"]),
     z(5),
     health(33),
     "enemy",
@@ -61,29 +61,6 @@ onKeyDown("space", () => {
 
 
 
-// Run the callback once every time we enter "idle" state.
-// Here we stay "idle" for 0.5 second, then enter "attack" state.
-enemy.onStateEnter("idle", async () => {
-    await wait(0.5);
-    enemy.enterState("attack");
-});
-
-// When we enter "attack" state, we fire a bullet, and enter "move" state after 1 sec
-enemy.onStateEnter("attack", async () => {
-    // Don't do anything if player doesn't exist anymore
-    if (player.exists()) {
-        const dir = player.pos.sub(enemy.pos).unit();
-
-    }
-
-    await wait(1);
-    enemy.enterState("move");
-});
-
-
-
-// Like .onUpdate() which runs every frame, but only runs when the current state is "move"
-// Here we move towards the player every frame if the current state is "move"
 enemy.onStateUpdate("move", () => {
     if (!player.exists()) return;
     const dir = player.pos.sub(enemy.pos).unit();
