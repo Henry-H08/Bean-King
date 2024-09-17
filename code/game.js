@@ -139,6 +139,10 @@ player.onCollide("enemy", () => {
 
 });
 
+player.onHurt(() => {
+        healthbar.set(player.health);
+    });
+
 
 const healthbar = add([
         rect(width(), 24),
@@ -155,9 +159,6 @@ const healthbar = add([
     ]);
 
 
-player.onHurt(() => {
-        healthbar.set(phealth);
-    });
 
 
  healthbar.onUpdate(() => {
