@@ -35,7 +35,7 @@ for (let i = 1; i < 2; i++) {
 
 const enemy = add([
     sprite("apple"),
-    pos((rand(0, width()), rand(0, height()))),
+    pos(rand(0, width()), rand(0, height())),
     anchor("center"),
     area(),
     // This enemy cycle between 3 states, and start from "idle" state
