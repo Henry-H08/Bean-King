@@ -1,6 +1,7 @@
 const SPEED = 320;
 const ENEMY_SPEED = 160;
 var phealth = 3;
+debug.inspect = tru
 
 
 // Add player game object
