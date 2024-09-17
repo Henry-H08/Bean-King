@@ -49,26 +49,24 @@ onKeyDown("space", () => {
 
 
 get('enemy').forEach((enemy) => {
-    onUpdate(() => {
+    
     if (!player.exists()) return;
         const dir = player.pos.sub(enemy.pos).unit();
         enemy.move(dir.scale(ENEMY_SPEED));
-    })
-    
-    enemy.on("death", () => {
-    destroy(enemy)
-})
-enemy.onCollideUpdate("detector", () => {
-    if (attime == 0) {
-        debug.log(attime);
-        attime = 2;
-        enemy.hurt(1);
-        wait(1, () => {
-            attime = 0;
-        })
-    }
+        enemy.on("death", () => {
+        destroy(enemy)
+    });
+    enemy.onCollideUpdate("detector", () => {
+        if (attime == 0) {
+            debug.log(attime);
+            attime = 2;
+            enemy.hurt(1);
+            wait(1, () => {
+                attime = 0;
+            })
+        }
 
-});
+    });
 });
 
 
