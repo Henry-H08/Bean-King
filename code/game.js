@@ -44,6 +44,20 @@ const enemy = add([
     "enemy",
 ]);
 
+onKeyDown("space", () => {
+    const enemy = add([
+    sprite("apple"),
+    pos((rand(0, width()), rand(0, height()))),
+    anchor("center"),
+    area(),
+    // This enemy cycle between 3 states, and start from "idle" state
+    state("move", ["idle", "attack", "move"]),
+    z(5),
+    health(33),
+    "enemy",
+]);
+});
+
 
 
 
