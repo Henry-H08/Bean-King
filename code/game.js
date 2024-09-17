@@ -140,12 +140,6 @@ player.onCollide("enemy", () => {
 });
 
 
-
-
-player.onHurt(() => {
-        healthbar.set(player.hp());
-    });
-
 const healthbar = add([
         rect(width(), 24),
         pos(0, 0),
@@ -159,6 +153,12 @@ const healthbar = add([
             },
         },
     ]);
+
+
+player.onHurt(() => {
+        healthbar.set(player.hp());
+    });
+
 
  healthbar.onUpdate(() => {
         if (healthbar.flash) {
