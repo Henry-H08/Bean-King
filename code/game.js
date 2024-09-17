@@ -33,42 +33,6 @@ for (let i = 1; i < 2; i++) {
     ]);
 }
 
-add([
-    sprite("apple"),
-    pos(rand(0, width()), rand(0, height())),
-    anchor("center"),
-    area(),
-    // This enemy cycle between 3 states, and start from "idle" state
-    state("move", ["move"]),
-    z(5),
-    health(1),
-    body(),
-    "enemy",
-]);
-
-onKeyDown("space", () => {
-    add([
-    sprite("apple"),
-    pos(rand(0, width()), rand(0, height())),
-    anchor("center"),
-    area(),
-    // This enemy cycle between 3 states, and start from "idle" state
-    state("move", ["idle", "attack", "move"]),
-    z(5),
-    health(33),
-    "enemy",
-]);
-});
-
-
-
-get('enemy').forEach((enemy) => {
-    enemy.onStateUpdate("move", () => {
-        if (!player.exists()) return;
-        const dir = player.pos.sub(enemy.pos).unit();
-        enemy.move(dir.scale(ENEMY_SPEED));
-    });
-});
 
 
 // Register input handlers & movement
