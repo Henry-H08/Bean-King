@@ -41,7 +41,7 @@ const enemy = add([
     // This enemy cycle between 3 states, and start from "idle" state
     state("move", ["move"]),
     z(5),
-    health(33),
+    health(1),
     body(),
     "enemy",
 ]);
