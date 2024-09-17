@@ -140,36 +140,12 @@ player.onCollide("enemy", () => {
 
 });
 
-player.onHurt(() => {
-        healthbar.set(player.health);
-    });
 
-
-const healthbar = add([
-        rect(width(), 24),
-        pos(0, 0),
-        color(107, 201, 108),
+const health = add([
+        text("phealth"),
+        pos(12, 32),
         fixed(),
-        {
-            max: phealth,
-            set(hp) {
-                this.width = width() * hp / this.max;
-                this.flash = true;
-            },
-        },
+        { health: 0 },
     ]);
 
-
-
-
- healthbar.onUpdate(() => {
-        if (healthbar.flash) {
-            healthbar.color = rgb(255, 255, 255);
-            healthbar.flash = false;
-        }
-        else {
-            healthbar.color = rgb(127, 255, 127);
-        }
-    });
-
-
+  
