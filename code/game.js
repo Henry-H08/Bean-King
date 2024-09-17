@@ -33,7 +33,7 @@ for (let i = 1; i < 2; i++) {
     ]);
 }
 
-const enemy = add([
+add([
     sprite("apple"),
     pos(rand(0, width()), rand(0, height())),
     anchor("center"),
@@ -47,7 +47,7 @@ const enemy = add([
 ]);
 
 onKeyDown("space", () => {
-    const enemy = add([
+    add([
     sprite("apple"),
     pos(rand(0, width()), rand(0, height())),
     anchor("center"),
@@ -62,13 +62,13 @@ onKeyDown("space", () => {
 
 
 
-
-enemy.onStateUpdate("move", () => {
-    if (!player.exists()) return;
-    const dir = player.pos.sub(enemy.pos).unit();
-    enemy.move(dir.scale(ENEMY_SPEED));
+get('enemy').forEach((enemy) => {
+    enemy.onStateUpdate("move", () => {
+        if (!player.exists()) return;
+        const dir = player.pos.sub(enemy.pos).unit();
+        enemy.move(dir.scale(ENEMY_SPEED));
+    });
 });
-
 
 
 // Register input handlers & movement
