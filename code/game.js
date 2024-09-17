@@ -135,7 +135,7 @@ enemy.on("death", () => {
 player.onCollideUpdate("enemy", () => {
     if (httime == 0) {
         debug.log(httime);
-        attime = 2;
+        httime = 2;
         player.hurt(1);
         phealth = phealth - 1;
         wait(1, () => {
