@@ -156,7 +156,7 @@ const healthbar = add([
 
 
 player.onHurt(() => {
-        healthbar.set(player.hp());
+        healthbar.set(phealth);
     });
 
 
