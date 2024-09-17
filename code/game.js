@@ -141,7 +141,7 @@ player.onCollide("enemy", () => {
 });
 
 
-const healthscore = add([
+var healthscore = add([
         text(phealth),
         pos(12, 32),
         fixed(),
