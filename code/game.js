@@ -149,4 +149,9 @@ const healthscore = add([
         color(BLACK),
     ]);
 
+  healthscore.onUpdate(() => {
+        healthscore = phealth;
+    });
+
+
   
