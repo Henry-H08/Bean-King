@@ -53,7 +53,7 @@ get('enemy').forEach((enemy) => {
     if (!player.exists()) return;
         const dir = player.pos.sub(enemy.pos).unit();
         enemy.move(dir.scale(ENEMY_SPEED));
-    )}
+    }
     
     enemy.on("death", () => {
     destroy(enemy)
