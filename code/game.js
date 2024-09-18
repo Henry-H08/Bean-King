@@ -64,10 +64,7 @@ get('enemy').forEach((enemy) => {
         enemy.on("death", () => {
         destroy(enemy)
     });
-   
-});
-
-
+    
 onCollide("enemy", "detector", () => {
     if (attime == 0) {
             debug.log(attime);
@@ -79,6 +76,10 @@ onCollide("enemy", "detector", () => {
         }
 
 })
+   
+});
+
+
 
 
 // Register input handlers & movement
