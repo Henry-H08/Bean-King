@@ -17,7 +17,7 @@ const player = add([
     
 ]);
 
-for (let i = 1; i < 2; i++) {
+
     player.add([
         sprite("bean"),
         rotate(0),
@@ -31,7 +31,7 @@ for (let i = 1; i < 2; i++) {
             speed: i * 8,
         },
     ]);
-}
+
 
 
 onKeyDown("space", () => {
@@ -56,8 +56,12 @@ get('enemy').forEach((enemy) => {
         enemy.on("death", () => {
         destroy(enemy)
     });
-    enemy.onCollideUpdate("detector", () => {
-        if (attime == 0) {
+   
+});
+
+
+onCollide("enemy", "detector", () => {
+    if (attime == 0) {
             debug.log(attime);
             attime = 2;
             enemy.hurt(1);
@@ -66,8 +70,7 @@ get('enemy').forEach((enemy) => {
             })
         }
 
-    });
-});
+})
 
 
 // Register input handlers & movement
