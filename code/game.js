@@ -56,14 +56,12 @@ onKeyDown("space", () => {
 
 
 
-get('enemy').forEach((enemy) => {
+get("enemy").forEach((enemy) => {
     
-    if (!player.exists()) return;
+    if (!player.exists()) {
         const dir = player.pos.sub(enemy.pos).unit();
         enemy.move(dir.scale(ENEMY_SPEED));
-        enemy.on("death", () => {
-        destroy(enemy)
-    });
+    };
     
 onCollide("enemy", "detector", () => {
     if (attime == 0) {
@@ -76,6 +74,9 @@ onCollide("enemy", "detector", () => {
         }
 
 })
+    enemy.on("death", () => {
+        destroy(enemy)
+    });
    
 });
 
