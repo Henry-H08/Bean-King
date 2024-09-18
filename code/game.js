@@ -18,6 +18,9 @@ const player = add([
 ]);
 
 
+    
+
+for (let i = 1; i < 2; i++) {
     player.add([
         sprite("bean"),
         rotate(0),
@@ -31,6 +34,11 @@ const player = add([
             speed: i * 8,
         },
     ]);
+}
+
+
+
+
 
 
 
